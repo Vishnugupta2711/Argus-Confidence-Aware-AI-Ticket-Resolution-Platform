@@ -1,0 +1,31 @@
+ticket_ref,email,system_id,system_name,category,is_urgent,description
+T001,john.doe@argus.local,fbcb613d-6359-4691-87f3-ac13d5b8888a,Active Directory,,false,my windows password expired and i cannot login to my laptop
+T002,jane.smith@argus.local,fbcb613d-6359-4691-87f3-ac13d5b8888a,Active Directory,,false,account locked after entering wrong password too many times
+T003,mike.chen@argus.local,fbcb613d-6359-4691-87f3-ac13d5b8888a,Active Directory,Auth/SSO,false,MFA authenticator app stopped working after i changed my phone
+T004,bob.jones@argus.local,fbcb613d-6359-4691-87f3-ac13d5b8888a,Active Directory,,false,SSO session keeps timing out right after i login to apps
+T005,priya.sharma@argus.local,f21aefcf-c122-4c75-a609-8d9cfb7ac7d4,SAP,,false,cannot login to SAP getting invalid credentials error
+T006,tom.nguyen@argus.local,f21aefcf-c122-4c75-a609-8d9cfb7ac7d4,SAP,SAP Issues,false,no access to SAP module after my role was changed last week
+T007,sarah.lee@argus.local,a63a8a31-6d60-4bc1-beea-96630fe15b36,Email,,false,mailbox is full and i cannot receive any new emails
+T008,anna.kowalski@argus.local,a63a8a31-6d60-4bc1-beea-96630fe15b36,Email,,false,outlook keeps crashing every time i try to open it
+T009,david.garcia@argus.local,87c74577-1bee-45e9-92d3-b70560f21fd2,VPN,,false,vpn certificate expired and i cannot connect to office network
+T010,john.doe@argus.local,87c74577-1bee-45e9-92d3-b70560f21fd2,VPN,,false,vpn client crashed after windows update and i cannot reinstall it
+T011,jane.smith@argus.local,35b86e5e-0417-40c5-b72e-d554a38fbadd,Printer,,false,print jobs stuck in queue and nothing is printing at all
+T012,mike.chen@argus.local,35b86e5e-0417-40c5-b72e-d554a38fbadd,Printer,,false,printer driver is missing after my laptop was refreshed by IT
+T013,bob.jones@argus.local,a298ed8f-1068-4b94-8d60-0f284dcf720a,Software Portal,,false,microsoft office is showing unlicensed product error on my laptop
+T014,priya.sharma@argus.local,a298ed8f-1068-4b94-8d60-0f284dcf720a,Software Portal,,false,cannot install application it says requires administrator rights
+T015,tom.nguyen@argus.local,dfd8a1ca-c1e3-46a4-8014-3fafd9e52a49,Network,,false,no internet access at my desk since moving here this morning
+T016,sarah.lee@argus.local,dfd8a1ca-c1e3-46a4-8014-3fafd9e52a49,Network,,false,wifi keeps disconnecting every few minutes on my laptop
+T017,anna.kowalski@argus.local,7c33de3c-fb7d-4e76-a3a6-c9f201498e10,File Server,,false,access denied to the shared project folder i need for my work
+T018,david.garcia@argus.local,dfd8a1ca-c1e3-46a4-8014-3fafd9e52a49,Network,,false,intermittent network issue sometimes works sometimes doesnt very frustrating
+T019,john.doe@argus.local,f21aefcf-c122-4c75-a609-8d9cfb7ac7d4,SAP,,false,SAP is running very slow and sometimes not responding at all
+T020,jane.smith@argus.local,a63a8a31-6d60-4bc1-beea-96630fe15b36,Email,,false,emails are being sent but recipients say they are not receiving them
+T021,mike.chen@argus.local,fbcb613d-6359-4691-87f3-ac13d5b8888a,Active Directory,,false,SSO keeps randomly logging me out from all my applications
+T022,bob.jones@argus.local,35b86e5e-0417-40c5-b72e-d554a38fbadd,Printer,,false,printer is connected to the network but only some computers can print
+T023,ceo@argus.local,a63a8a31-6d60-4bc1-beea-96630fe15b36,Email,,true,cannot access my email account need help immediately urgent
+T024,cfo@argus.local,f21aefcf-c122-4c75-a609-8d9cfb7ac7d4,SAP,,true,SAP login not working need to access finance module for month end close
+T025,cto@argus.local,fbcb613d-6359-4691-87f3-ac13d5b8888a,Active Directory,,false,my account password expired please reset it urgently
+T026,contractor.1@argus.local,dfd8a1ca-c1e3-46a4-8014-3fafd9e52a49,Network,,true,entire building has lost internet access since 9am all users affected
+T027,contractor.2@argus.local,f21aefcf-c122-4c75-a609-8d9cfb7ac7d4,SAP,,true,SAP is completely down for the entire procurement team since 8am
+T028,contractor.3@argus.local,fbcb613d-6359-4691-87f3-ac13d5b8888a,Active Directory,,true,whole team locked out of their accounts after AD sync issue this morning
+T029,john.doe@argus.local,dfd8a1ca-c1e3-46a4-8014-3fafd9e52a49,Network,,false,qzxkajshdkajsh random errors everywhere broken help fix immediately
+T030,priya.sharma@argus.local,35b86e5e-0417-40c5-b72e-d554a38fbadd,Printer,,true,print queue completely frozen urgent need to print before client meeting
