@@ -1,0 +1,56 @@
+name: Deploy to Render
+
+on:
+  push:
+    branches: [main]
+  workflow_run:
+    workflows: ['Backend CI', 'Frontend CI']
+    types: [completed]
+    branches: [main]
+
+permissions:
+  contents: read
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    if: github.event.workflow_run.conclusion == 'success' || github.event_name == 'push'
+    timeout-minutes: 20
+
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Deploy Backend to Render
+        run: |
+          curl -X POST "https://api.render.com/deploy/srv-d701m4n5r7bs73f3hjkg?key=${{ secrets.RENDER_DEPLOY_KEY }}" \
+            -H "Content-Type: application/json" \
+            -d '{"clearCache": "do_not_clear_cache"}'
+        if: ${{ secrets.RENDER_DEPLOY_KEY != '' }}
+        continue-on-error: true
+
+      - name: Deploy Sandbox to Render
+        run: |
+          curl -X POST "https://api.render.com/deploy/srv-d701pkchg0os73a37870?key=${{ secrets.RENDER_DEPLOY_KEY }}" \
+            -H "Content-Type: application/json" \
+            -d '{"clearCache": "do_not_clear_cache"}'
+        if: ${{ secrets.RENDER_DEPLOY_KEY != '' }}
+        continue-on-error: true
+
+      - name: Deploy Frontend to Vercel
+        uses: amondnet/vercel-action@v25
+        if: ${{ secrets.VERCEL_TOKEN != '' }}
+        with:
+          vercel-token: ${{ secrets.VERCEL_TOKEN }}
+          vercel-org-id: ${{ secrets.VERCEL_ORG_ID }}
+          vercel-project-id: ${{ secrets.VERCEL_PROJECT_ID }}
+          working-directory: ./frontend
+          production: true
+        continue-on-error: true
+
+      - name: Notify Deployment Status
+        if: always()
+        run: |
+          echo "Deployment workflow completed"
+          echo "Backend: srv-d701m4n5r7bs73f3hjkg"
+          echo "Sandbox: srv-d701pkchg0os73a37870"
+          echo "Frontend: Vercel (auto-deploy enabled)"
