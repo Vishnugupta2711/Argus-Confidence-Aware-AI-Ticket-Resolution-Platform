@@ -1,0 +1,51 @@
+name: Docker Image CI
+
+# Verifies the Docker image builds successfully on every PR and push to main.
+# This is a build-only check — actual publishing is handled by docker-publish.yml.
+
+on:
+  push:
+    branches: ["main"]
+    paths:
+      - "Dockerfile"
+      - ".dockerignore"
+      - "backend/**"
+      - "sandbox/**"
+      - "frontend/**"
+      - "supervisord.conf"
+      - "docker-entrypoint.sh"
+  pull_request:
+    branches: ["main"]
+    paths:
+      - "Dockerfile"
+      - ".dockerignore"
+      - "backend/**"
+      - "sandbox/**"
+      - "frontend/**"
+      - "supervisord.conf"
+      - "docker-entrypoint.sh"
+
+permissions:
+  contents: read
+
+jobs:
+  build:
+    name: Build Docker image
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Set up Docker Buildx
+        uses: docker/setup-buildx-action@v4
+
+      - name: Build the Docker image (no push)
+        uses: docker/build-push-action@v7
+        with:
+          context: .
+          push: false
+          tags: ghcr.io/kr1shnasomani/argus:ci-${{ github.sha }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
