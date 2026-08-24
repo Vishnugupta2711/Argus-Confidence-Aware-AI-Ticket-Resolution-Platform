@@ -1,0 +1,68 @@
+# =============================================================================
+# .dockerignore — Argus
+# Excludes files from the Docker build context for lean, secure images.
+# =============================================================================
+
+# Version control
+.git/
+.gitignore
+
+# Local environment secrets — never bake into image
+.env
+*.env.local
+
+# Python virtual environments (rebuilt inside image)
+venv/
+backend/venv/
+sandbox/venv/
+.venv/
+env/
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+*.egg-info/
+.eggs/
+dist/
+build/
+
+# Node / Frontend
+node_modules/
+frontend/node_modules/
+frontend/dist/
+frontend/.vite/
+*.tsbuildinfo
+
+# IDE & OS artifacts
+.vscode/
+.idea/
+.DS_Store
+*.swp
+*.swo
+
+# Test & coverage artifacts
+.pytest_cache/
+htmlcov/
+.coverage
+coverage.xml
+tests/
+
+# Lint & type-check caches
+.ruff_cache/
+.mypy_cache/
+
+# Data files (seeded separately, not part of the image)
+data/
+
+# Agent skill files (dev tooling only)
+.agents/
+
+# Logs
+*.log
+logs/
+
+# Docs (optional — kept for SETUP.md reference)
+# docs/
+
+# GitHub Actions (not needed inside container)
+.github/
