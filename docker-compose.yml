@@ -1,0 +1,54 @@
+services:
+  # ── Backend API ─────────────────────────────────────────────── port 8005 ──
+  backend:
+    container_name: argus-backend
+    image: ghcr.io/kr1shnasomani/argus:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        VITE_API_URL: http://localhost:8005/api
+    ports:
+      - "8005:8005"
+    environment:
+      - SERVICE=backend
+      - SANDBOX_URL=http://argus-sandbox:8001
+    env_file:
+      - .env
+    restart: unless-stopped
+    depends_on:
+      - sandbox
+
+  # ── Sandbox API ─────────────────────────────────────────────── port 8001 ──
+  sandbox:
+    container_name: argus-sandbox
+    image: ghcr.io/kr1shnasomani/argus:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        VITE_API_URL: http://localhost:8005/api
+    ports:
+      - "8001:8001"
+    environment:
+      - SERVICE=sandbox
+    env_file:
+      - .env
+    restart: unless-stopped
+
+  # ── Frontend UI ─────────────────────────────────────────────── port 5173 ──
+  frontend:
+    container_name: argus-frontend
+    image: ghcr.io/kr1shnasomani/argus:latest
+    build:
+      context: .
+      dockerfile: Dockerfile
+      args:
+        VITE_API_URL: http://localhost:8005/api
+    ports:
+      - "5173:5173"
+    environment:
+      - SERVICE=frontend
+    env_file:
+      - .env
+    restart: unless-stopped
