@@ -1,0 +1,91 @@
+# Dependabot configuration for Argus
+# Uses grouped updates to produce ONE PR per ecosystem instead of one per package.
+# https://docs.github.com/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file
+
+version: 2
+updates:
+
+  # GitHub Actions — one PR for all action bumps
+  - package-ecosystem: "github-actions"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 3
+    groups:
+      github-actions:
+        patterns: ["*"]
+    labels:
+      - "dependencies"
+      - "github-actions"
+
+  # Python — backend (one grouped PR for all backend deps)
+  - package-ecosystem: "pip"
+    directory: "/backend"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 3
+    groups:
+      backend-deps:
+        patterns: ["*"]
+    ignore:
+      # pytest 9.x is incompatible with all versions of pytest-asyncio
+      - dependency-name: "pytest"
+        versions: [">=9"]
+    labels:
+      - "dependencies"
+      - "python"
+
+  # Python — sandbox (one grouped PR for all sandbox deps)
+  - package-ecosystem: "pip"
+    directory: "/sandbox"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 3
+    groups:
+      sandbox-deps:
+        patterns: ["*"]
+    labels:
+      - "dependencies"
+      - "python"
+
+  # Node.js — frontend (one grouped PR for all frontend deps)
+  - package-ecosystem: "npm"
+    directory: "/frontend"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 3
+    groups:
+      frontend-deps:
+        patterns: ["*"]
+    ignore:
+      # ESLint 10 is a major breaking release — plugins not compatible yet
+      - dependency-name: "eslint"
+        versions: [">=10"]
+      # TypeScript 6 is a major breaking release
+      - dependency-name: "typescript"
+        versions: [">=6"]
+    labels:
+      - "dependencies"
+      - "javascript"
+
+  # Docker — base image in Dockerfile
+  - package-ecosystem: "docker"
+    directory: "/"
+    schedule:
+      interval: "weekly"
+      day: "monday"
+    open-pull-requests-limit: 1
+    groups:
+      docker-base:
+        patterns: ["*"]
+    ignore:
+      # Pinned to Python 3.11 for compatibility — do not auto-bump major versions
+      - dependency-name: "python"
+        versions: [">=3.12"]
+    labels:
+      - "dependencies"
+      - "docker"
