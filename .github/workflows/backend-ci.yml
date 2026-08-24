@@ -24,10 +24,10 @@ jobs:
         python-version: ['3.11']
 
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v7
         with:
           python-version: ${{ matrix.python-version }}
           cache: 'pip'
@@ -67,7 +67,7 @@ jobs:
           SANDBOX_URL: ${{ secrets.SANDBOX_URL || 'http://localhost:8001' }}
 
       - name: Upload coverage reports
-        uses: codecov/codecov-action@v3
+        uses: codecov/codecov-action@v7
         if: always()
         with:
           files: ./backend/coverage.xml
